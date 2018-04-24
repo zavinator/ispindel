@@ -105,7 +105,7 @@
         var options = {
             hAxis: {
                 format: 'd.M HH:mm',
-                gridlines: {count: 12}
+                gridlines: {count: -1}
             },
             vAxis: {
                 format: '#.##'
