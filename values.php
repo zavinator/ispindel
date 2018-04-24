@@ -69,9 +69,9 @@
         <h1><a href="index.php?show=<?php echo $show; ?>"><?php echo "$beer_name"; ?></a></h1>
         <table>
             <tr>
-                <th width="180">Timestamp</th>
+                <th width="180">Čas</th>
                 <th width="180">Plato °P</th>
-                <th width="180">Temperature °C</th>
+                <th width="180">Teplota °C</th>
                 <th width="180"></th>
                 <?php echo $values; ?>
             </tr>
