@@ -2,6 +2,8 @@
 
 Jednoduchý PHP web pro zobrazení a správu měření teploty a Plato piva z iSpindel https://github.com/universam1/iSpindel
 
+![Screenshot](screenshot.jpg)
+
 ## Licence ##
 
 Copyright © 2018, Martin Dušek. Všechna práva vyhrazena.  
