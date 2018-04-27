@@ -1,11 +1,11 @@
 <!--
-Copyright © 2018, Martin Dušek. Všechna práva vyhrazena.
-Redistribuce a použití zdrojových i binárních forem díla, v pùvodním i upravovaném tvaru, jsou povoleny za následujících podmínek:
+Copyright Â© 2018, Martin DuÅ¡ek. VÅ¡echna prÃ¡va vyhrazena.
+Redistribuce a pouÅ¾itÃ­ zdrojovÃ½ch i binÃ¡rnÃ­ch forem dÃ­la, v pÅ¯vodnÃ­m i upravovanÃ©m tvaru, jsou povoleny za nÃ¡sledujÃ­cÃ­ch podmÃ­nek:
 
-Šíøený zdrojový kód musí obsahovat výše uvedenou informaci o copyrightu, tento seznam podmínek a níže uvedené zøeknutí se odpovìdnosti.
-Šíøený binární tvar musí nést výše uvedenou informaci o copyrightu, tento seznam podmínek a níže uvedené zøeknutí se odpovìdnosti ve své dokumentaci a/nebo dalších poskytovaných materiálech.
-Ani jméno vlastníka práv, ani jména pøispìvatelù nemohou být použita pøi podpoøe nebo právních aktech souvisejících s produkty odvozenými z tohoto softwaru bez výslovného písemného povolení.
-TENTO SOFTWARE JE POSKYTOVÁN DRŽITELEM LICENCE A JEHO PØISPÌVATELI „JAK STOJÍ A LEŽÍ“ A JAKÉKOLIV VÝSLOVNÉ NEBO PØEDPOKLÁDANÉ ZÁRUKY VÈETNÌ, ALE NEJEN, PØEDPOKLÁDANÝCH OBCHODNÍCH ZÁRUK A ZÁRUKY VHODNOSTI PRO JAKÝKOLIV ÚÈEL JSOU POPØENY. DRŽITEL, ANI PØISPÌVATELÉ NEBUDOU V ŽÁDNÉM PØÍPADÌ ODPOVÌDNI ZA JAKÉKOLIV PØÍMÉ, NEPØÍMÉ, NÁHODNÉ, ZVLÁŠTNÍ, PØÍKLADNÉ NEBO VYPLÝVAJÍCÍ ŠKODY (VÈETNÌ, ALE NEJEN, ŠKOD VZNIKLÝCH NARUŠENÍM DODÁVEK ZBOŽÍ NEBO SLUŽEB; ZTRÁTOU POUŽITELNOSTI, DAT NEBO ZISKÙ; NEBO PØERUŠENÍM OBCHODNÍ ÈINNOSTI) JAKKOLIV ZPÙSOBENÉ NA ZÁKLADÌ JAKÉKOLIV TEORIE O ZODPOVÌDNOSTI, A UŽ PLYNOUCÍ Z JINÉHO SMLUVNÍHO VZTAHU, URÈITÉ ZODPOVÌDNOSTI NEBO PØEÈINU (VÈETNÌ NEDBALOSTI) NA JAKÉMKOLIV ZPÙSOBU POUŽITÍ TOHOTO SOFTWARE, I V PØÍPADÌ, ŽE DRŽITEL PRÁV BYL UPOZORNÌN NA MOŽNOST TAKOVÝCH ŠKOD.
+Å Ã­Å™enÃ½ zdrojovÃ½ kÃ³d musÃ­ obsahovat vÃ½Å¡e uvedenou informaci o copyrightu, tento seznam podmÃ­nek a nÃ­Å¾e uvedenÃ© zÅ™eknutÃ­ se odpovÄ›dnosti.
+Å Ã­Å™enÃ½ binÃ¡rnÃ­ tvar musÃ­ nÃ©st vÃ½Å¡e uvedenou informaci o copyrightu, tento seznam podmÃ­nek a nÃ­Å¾e uvedenÃ© zÅ™eknutÃ­ se odpovÄ›dnosti ve svÃ© dokumentaci a/nebo dalÅ¡Ã­ch poskytovanÃ½ch materiÃ¡lech.
+Ani jmÃ©no vlastnÃ­ka prÃ¡v, ani jmÃ©na pÅ™ispÄ›vatelÅ¯ nemohou bÃ½t pouÅ¾ita pÅ™i podpoÅ™e nebo prÃ¡vnÃ­ch aktech souvisejÃ­cÃ­ch s produkty odvozenÃ½mi z tohoto softwaru bez vÃ½slovnÃ©ho pÃ­semnÃ©ho povolenÃ­.
+TENTO SOFTWARE JE POSKYTOVÃN DRÅ½ITELEM LICENCE A JEHO PÅ˜ISPÄšVATELI â€žJAK STOJÃ A LEÅ½Ãâ€œ A JAKÃ‰KOLIV VÃSLOVNÃ‰ NEBO PÅ˜EDPOKLÃDANÃ‰ ZÃRUKY VÄŒETNÄš, ALE NEJEN, PÅ˜EDPOKLÃDANÃCH OBCHODNÃCH ZÃRUK A ZÃRUKY VHODNOSTI PRO JAKÃKOLIV ÃšÄŒEL JSOU POPÅ˜ENY. DRÅ½ITEL, ANI PÅ˜ISPÄšVATELÃ‰ NEBUDOU V Å½ÃDNÃ‰M PÅ˜ÃPADÄš ODPOVÄšDNI ZA JAKÃ‰KOLIV PÅ˜ÃMÃ‰, NEPÅ˜ÃMÃ‰, NÃHODNÃ‰, ZVLÃÅ TNÃ, PÅ˜ÃKLADNÃ‰ NEBO VYPLÃVAJÃCÃ Å KODY (VÄŒETNÄš, ALE NEJEN, Å KOD VZNIKLÃCH NARUÅ ENÃM DODÃVEK ZBOÅ½Ã NEBO SLUÅ½EB; ZTRÃTOU POUÅ½ITELNOSTI, DAT NEBO ZISKÅ®; NEBO PÅ˜ERUÅ ENÃM OBCHODNÃ ÄŒINNOSTI) JAKKOLIV ZPÅ®SOBENÃ‰ NA ZÃKLADÄš JAKÃ‰KOLIV TEORIE O ZODPOVÄšDNOSTI, AÅ¤ UÅ½ PLYNOUCÃ Z JINÃ‰HO SMLUVNÃHO VZTAHU, URÄŒITÃ‰ ZODPOVÄšDNOSTI NEBO PÅ˜EÄŒINU (VÄŒETNÄš NEDBALOSTI) NA JAKÃ‰MKOLIV ZPÅ®SOBU POUÅ½ITÃ TOHOTO SOFTWARE, I V PÅ˜ÃPADÄš, Å½E DRÅ½ITEL PRÃV BYL UPOZORNÄšN NA MOÅ½NOST TAKOVÃCH Å KOD.
 -->
 <?php 
     $servername = "localhost";
