@@ -67,9 +67,9 @@ Pokud na vašem hostingu nemůžete přidat novou databázi, tak vytvořte pouze
 ### 3. Nastavení iSpindel ###
 
 * Service Type = HTTP
-* Server Address = http://adresa (váš webový server - například http://10.0.0.1)
+* Server Address = váš webový server (například 10.0.0.1)
 * Server Port = 80
-* Server URL = http://adresa/iSpindel.php
+* Server URL = http://adresa/iSpindel.php (http://10.0.0.1/iSpindel.php)
 
 ### 4. Web ###
 
