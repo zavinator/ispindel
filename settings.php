@@ -33,7 +33,21 @@ TENTO SOFTWARE JE POSKYTOVÁN DRŽITELEM LICENCE A JEHO PŘISPĚVATELI „JAK ST
         else
         {
             $sql = "INSERT INTO batch (name, plato) VALUES('$form_name', '$form_plato')";
-            if($conn->query($sql) == TRUE) $form_name = $form_plato = '';
+            if($conn->query($sql) == TRUE) 
+            {
+                $form_name = $form_plato = '';
+                // create webdir
+                $sql = "SELECT timestamp FROM batch ORDER BY timestamp DESC";
+                $result = $conn->query($sql);
+                if($row = $result->fetch_assoc())
+                {
+                    $timestamp = $row["timestamp"];
+                    $webdir = date('YmdHis', strtotime($timestamp));
+                    $old_umask = umask(0);
+                    mkdir("/var/www/html/webcam/$webdir", 0777);
+                    umask($old_umask);
+                }
+            }
         }
     }
     $action = 'Nové';
@@ -60,6 +74,7 @@ TENTO SOFTWARE JE POSKYTOVÁN DRŽITELEM LICENCE A JEHO PŘISPĚVATELI „JAK ST
 
 <html>
     <head>
+        <title>Pivo - nastavení</title>
         <style>
        table.list {
         border-collapse: collapse;
@@ -77,6 +92,13 @@ TENTO SOFTWARE JE POSKYTOVÁN DRŽITELEM LICENCE A JEHO PŘISPĚVATELI „JAK ST
        }
        table.list td.l {
         text-align: left;
+       }
+       body, p, table {
+        font: 10pt Verdana, Arial, sans-serif;
+       }
+       h1 {
+        font-size: 16pt;
+        font-weight: bold;
        }
        </style>
     </head>

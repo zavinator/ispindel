@@ -9,8 +9,8 @@ TENTO SOFTWARE JE POSKYTOVÁN DRŽITELEM LICENCE A JEHO PŘISPĚVATELI „JAK ST
 -->
 <?php 
     $servername = "localhost";
-    $username = "USERNAME";
-    $password = "PASSWORD";
+    $username = "martin";
+    $password = "TSA20tmo01";
     $dbname = "beer";
 
     // Create connection

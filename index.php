@@ -20,10 +20,12 @@ TENTO SOFTWARE JE POSKYTOVÁN DRŽITELEM LICENCE A JEHO PŘISPĚVATELI „JAK ST
     if($show != '') 
     {
         $id = intval($show);
+        $sh = "&show=$id";
         $sql = "SELECT pk_id, name, timestamp, plato FROM batch WHERE pk_id = '$id'"; // selected
     }
     else
     {
+        $sh = "";
         $sql = "SELECT pk_id, name, timestamp, plato FROM batch ORDER BY timestamp DESC"; // last
     }
     
@@ -35,6 +37,17 @@ TENTO SOFTWARE JE POSKYTOVÁN DRŽITELEM LICENCE A JEHO PŘISPĚVATELI „JAK ST
         $SG_start = SG($plato_start);
         $time_start = $row['timestamp'];
         $show = $row['pk_id'];
+    }
+    
+    // webcam - jpg
+    $webcam = '';
+    $webdir = date('YmdHis', strtotime($time_start));
+    $files = array_diff(scandir("/var/www/html/webcam/$webdir", SCANDIR_SORT_DESCENDING), array('..', '.'));
+    $numFiles = count($files);
+    for ($i = 0; $i < $numFiles; $i++)
+    {
+        $file = $files[$i];
+        $webcam .= "<img class=\"mySlides\" src=\"black.png\" data-src=\"webcam/$webdir/$file\" title=\"$file\" width=\"640\" height=\"480\" />";
     }
     
     // find time_end if exists
@@ -51,9 +64,9 @@ TENTO SOFTWARE JE POSKYTOVÁN DRŽITELEM LICENCE A JEHO PŘISPĚVATELI „JAK ST
         while($row = $result->fetch_assoc()) 
         {
             $timestamp = $row["timestamp"];
+            $temp = $row["temperature"];
             $plato = $row["gravity"];
             if($plato > $plato_max) $plato_max = $plato;
-            $temp = $row["temperature"];
             $battery = $row["battery"];
             $angle = $row["angle"];
             $line_chart .= "[new Date('$timestamp'), $plato, $temp],";
@@ -74,6 +87,8 @@ TENTO SOFTWARE JE POSKYTOVÁN DRŽITELEM LICENCE A JEHO PŘISPĚVATELI „JAK ST
 
 <html>
   <head>
+   <title>Pivo - kvašení</title>
+   <meta name="robots" content="noindex">
    <style>
    table.data {
     border-collapse: collapse;
@@ -94,6 +109,19 @@ TENTO SOFTWARE JE POSKYTOVÁN DRŽITELEM LICENCE A JEHO PŘISPĚVATELI „JAK ST
    }
    table.data th.r {
     background: #B6D7A8;
+   }
+   .w3-display-left{position:absolute;top:50%;left:0%;transform:translate(0%,-50%);-ms-transform:translate(-0%,-50%)}
+   .w3-display-right{position:absolute;top:50%;right:0%;transform:translate(0%,-50%);-ms-transform:translate(0%,-50%)}
+   .w3-button{border:none;display:inline-block;padding:8px 8px;vertical-align:middle;overflow:hidden;text-decoration:none;color:inherit;background-color:inherit;text-align:center;cursor:pointer;white-space:nowrap;margin-bottom: 15px;margin-top:15px;width:60px;font-weight:bold}
+   .w3-button:hover{color:#000!important;background-color:#B6D7A8!important}
+   .w3-button:disabled{cursor:not-allowed;opacity:0.3}
+   .w3-black,.w3-hover-black:hover{color:#000!important;background-color:#A4C2F4!important}
+   body, p, table {
+    font: 10pt Verdana, Arial, sans-serif;
+    }
+   h1 {
+    font-size: 16pt;
+    font-weight: bold;
    }
    </style>
    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -120,8 +148,11 @@ TENTO SOFTWARE JE POSKYTOVÁN DRŽITELEM LICENCE A JEHO PŘISPĚVATELI „JAK ST
                 format: '#.##'
             },
             colors: ['red', 'blue'],
-            width: 1400,
-            height: 520
+            width: 1250,
+            height: 520,
+            legend: {
+                position: 'none'
+            }
         };
         var chart = new google.charts.Line(document.getElementById('plato_temp_chart_div'));
         chart.draw(data, google.charts.Line.convertOptions(options));
@@ -147,28 +178,92 @@ TENTO SOFTWARE JE POSKYTOVÁN DRŽITELEM LICENCE A JEHO PŘISPĚVATELI „JAK ST
   </head>
   <body>
     <h1><?php echo $beer_name; ?></h1>
+    
+    <div style="float: right; position:relative; margin-left: 20px; margin-bottom: 20px; width: 640px; height: 480px;">
+        <?php echo $webcam; ?>
+        <div class="w3-display-left">
+            <button id="minus15" class="w3-button w3-black" onclick="plusDivs(1)">-15 min</button><br />
+            <button id="minus60" class="w3-button w3-black" onclick="plusDivs(4)">-1 hod</button><br />
+            <button id="start" class="w3-button w3-black" onclick="showDiv(<?php echo $numFiles - 1; ?>)">Start</button><br />
+        </div>
+        <div class="w3-display-right">
+            <button id="plus15" class="w3-button w3-black" onclick="plusDivs(-1)">+15 min</button><br />
+            <button id="plus60" class="w3-button w3-black" onclick="plusDivs(-4)">+1 hod</button><br />
+            <button id="end" class="w3-button w3-black" onclick="showDiv(0)">Konec</button>
+        </div>
+    </div>
+    <script type="text/javascript">
+    var slideIndex = 0;
+    showDivs(slideIndex);
+
+    function plusDivs(n) 
+    {
+        showDivs(slideIndex += n);
+    }
+    function showDiv(n)
+    {
+        showDivs(slideIndex = n);
+    }
+
+    function showDivs(n) 
+    {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        var maxIndex = x.length - 1;
+        if (n >= maxIndex) slideIndex = maxIndex;
+        if (n < 0) slideIndex = 0;
+        
+        document.getElementById("minus15").disabled = slideIndex == maxIndex;
+        document.getElementById("minus60").disabled = slideIndex > maxIndex - 4;
+        document.getElementById("start").disabled = slideIndex == maxIndex;
+        
+        document.getElementById("plus15").disabled = slideIndex == 0;
+        document.getElementById("plus60").disabled = slideIndex < 4;
+        document.getElementById("end").disabled = slideIndex == 0;
+        
+        for (i = 0; i < x.length; i++) 
+        {
+            x[i].style.display = "none";  
+        }
+        // preload images
+        for(i = slideIndex - 4; i <= slideIndex + 4; i++)
+        {
+            if(i >= 0 && i <= maxIndex)
+            {
+                if(x[i].getAttribute("data-src"))
+                {
+                    x[i].src = x[i].getAttribute("data-src");
+                    x[i].removeAttribute("data-src");
+                }
+            }
+        }
+        
+        x[slideIndex].style.display = "block";  
+    }
+    </script>
+    
     <table class="data">
         <tr>
             <th width="170">Čas posledního bodu</th>
             <td width="170"><?php echo $timestamp; ?></td>
-            <td width="50" class="noborder"></td>
+            <td width="30" class="noborder"></td>
             <th width="170" class="r">Počáteční síla</th>
             <td width="170"><?php echo(sprintf('%.2f', $plato_start)); ?> °P (<?php echo(sprintf('%.3f', $SG_start)); ?>)</td>
-            <td width="50" class="noborder"></td>
+            <td width="30" class="noborder"></td>
             <td class="noborder"><a href="settings.php"><strong>Nastavení</strong></a></td>
         </tr>
         <tr>
             <th>Plato</th>
             <td><?php echo(sprintf('%.2f', $plato)); ?> °P (<?php echo(sprintf('%.3f', $SG)); ?>)</td>
             <td class="noborder"></td>
-            <th class="r">Zdálivé prokvašení</th>
+            <th class="r">Zdánlivé prokvašení</th>
             <td><?php echo(sprintf('%.1f', 100 * $Az)); ?> %</td>
         </tr>
         <tr>
             <th>Teplota</th>
             <td><?php echo(sprintf('%.2f', $temp)); ?> °C</td>
             <td class="noborder"></td>
-            <th class="r">ABV</th>
+            <th class="r">Alkohol</th>
             <td><?php echo(sprintf('%.1f', $ABV)); ?> %</td>
             <td class="noborder"></td>
             <td class="noborder"><a href="values.php?show=<?php echo $show; ?>"><strong>Hodnoty</strong></a></td>
@@ -193,6 +288,7 @@ TENTO SOFTWARE JE POSKYTOVÁN DRŽITELEM LICENCE A JEHO PŘISPĚVATELI „JAK ST
             <td><div id="plato_chart_div"></div></td>
             <td><div id="temp_chart_div"></div></td>
             <td><div id="battery_chart_div"></div></td>
+            <td style="vertical-align: bottom; text-align: right" width="100%"><img src="legend.png" width="124" height="77" /></td>
         </tr>
     </table>
     <div id="plato_temp_chart_div"></div>

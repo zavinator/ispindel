@@ -72,6 +72,13 @@ TENTO SOFTWARE JE POSKYTOVÁN DRŽITELEM LICENCE A JEHO PŘISPĚVATELI „JAK ST
         border: 1px solid black;
         text-align: center;
        }
+       body, p, table {
+        font: 10pt Verdana, Arial, sans-serif;
+       }
+       h1 {
+         font-size: 16pt;
+         font-weight: bold;
+       }
        </style>
     </head>
     <body>
